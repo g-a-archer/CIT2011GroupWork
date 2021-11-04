@@ -1,6 +1,7 @@
 var PlayersData;
 var correctAns;
-
+var seed1;
+var seed2;
 
 // Task 2
 function Register(){
@@ -11,7 +12,7 @@ function Register(){
     email = document.getElementById("email").value;
     gender =  document.getElementById('gender').value;
 
-    PlayersData = [fName,lName,age,gender,email];
+    PlayersData = [fName,lName,age,gender,email,];
     // Apart Task 3
     disableInput();
 
@@ -70,15 +71,25 @@ function PlayGame() {
     document.getElementById("numvalue2").value = seed2;
     document.getElementById("usrAns").value  = "";
 }
-
+//TASK 6	
 function checkAnswer(){
     var usrAns = document.getElementById('usrAns').value;
+    var check=true;
     console.log(usrAns);
     console.log(correctAns);
-
+	
+    PlayersData.push(seed1 * seed2, "User's answer: "+usrAns,);	
     if(usrAns == correctAns){
-       document.getElementById("answerResponse").innerHtml = "Correct!";
+       document.getElementById("answerResponse").innerHTML = "Your answer is CORRECT!";
+	return true; 
+	if(check){
+		PlayersData.push("Answer is correct,");
+	}
     }else{
-        document.getElementById("answerResponse").innerHtml = "Incorrect";    
-    }
+        document.getElementById("answerResponse").innerHTML = "Your answer is incorrect. Try again.";
+		return false;  
+		if(check){ 
+			PlayersData.push("Answer is incorrect,");
+		}
+    }	
 }
