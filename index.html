@@ -26,6 +26,7 @@
 		<div id='body'>
 			<!--Task 1  -->
 			<form name = 'registrationForm' id='nameForm'>
+				<section id="notice"></section>
 				<label>First Name </label><br>
 				<input class='ffrom' id='fName' type='text' minlength='3' required><br><br>
 				<label>Last Name </label><br>
@@ -43,12 +44,16 @@
 				<!-- pattern='@[gmail.com]' -->
 				<br><br>
 				<!--Task 9-->
-				<textarea id='showpercentage' cols="53" rows="4" disabled></textarea>
-				<br><br>	
+				<label hidden="true" id="showPercentageLb">Percentage Score</label><section id="addBreak"></section>
+				<textarea id='showPercentage' value="" cols="53" rows="4" hidden="true" disabled ></textarea>
+				<section id="addBreak"></section><section id="addBreak"></section>
+				<label hidden="true" id="showAllPlayersLb">All Players</label><section id="addBreak"></section>
+				<textarea id='showAllPlayers' value="" cols="53" rows="4" hidden="true" disabled ></textarea>
+				<section id="addBreak"></section>
+
 				<!-- Task 3 -->
 				<button class='ffrom' type='button' id='registerButton' onclick='Register()' >Register</button>&nbsp;
 				<button type='button' id='startBtn' onclick='PlayGame()' disabled >Start</button>&nbsp;
-				<button type='button' id='seePercentage' onclick='' disabled >See Percentage</button>&nbsp;
 			</form>
 		</div>
 
@@ -70,7 +75,7 @@
 				<!--Task 8-->
 				<button type='button' onclick='PlayGame()' class ='button' id='nextBtn'>Next</button>
 				<!--Task 7-->
-				<button type='button' onclick='disableModal()' id='endBtn' >End</button> 
+				<button type='button' onclick='findPercentageScore()' id='endBtn' >End</button> 
 			</form>
 		</div>
 	</div>
