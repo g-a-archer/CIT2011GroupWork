@@ -153,13 +153,13 @@ td{
 	width:250px;
 	border:1px;
 }
-#scorediv{
+/*#scorediv{
 	visibility: hidden;
 }
 .scoreactivate{
 	visibility: visible;
    opacity: 1;  
-}
+}*/
 #showcharts{
 	visibility: hidden;
 }
