@@ -25,6 +25,7 @@
         <!--Task 1  -->
         <form name = 'registrationForm' id='nameForm'>
           <section id="notice">
+<h1>Poly Disco</h1>
           </section>
           <label>First Name 
           </label>
@@ -55,49 +56,37 @@
             <option class='ffrom' value='male'>Male
             </option>
           </select>
-          <br>
-          <br>
+         <br>
+		 <br>
           <label>Email
           </label>
           <br>
           <input title='Must be a gmail.com domain' class='ffrom' type='email'  id='email' pattern="^[a-zA-Z0-9]+@gmail\.com$" >
           <!-- pattern='@[gmail.com]' -->
           <br>
-          <br>
+		  <br>
           <!--Task 9-->
-		  <div  hidden="true" id="scorediv">
-          <label  id="showPercentageLb">Percentage Score
-          </label>
-          <br>
-		  <br>
-		  
-          <textarea id='showPercentage'  cols="53" rows="4" hidden="true" disabled >
-          </textarea>
-         <br>
-		 <br>
-          
-          <label id="showAllPlayersLb">All Players
-          </label>
-          <br>
-		  <br>
-		  <br>
-          <textarea id='showAllPlayers'  cols="53" rows="4" hidden="true" disabled >
-          </textarea>
-         
-		  </div>
-          
+		  <label id="showPercentageLb">Percentage Score</label><div class="addBreak"> </div> 
+				<textarea id='showPercentage'cols="53" rows="4" hidden="true" disabled ></textarea>
+				<label id="showAllPlayersLb">All Players</label><div class="addBreak"> </div> 	<div class="addBreak"> </div> 
+				<textarea id='showAllPlayers' cols="53" rows="4" hidden="true" disabled ></textarea>
+				<div class="addBreak"> </div>
+
+
           <!-- Task 3 -->
           <button class='ffrom' type='button' id='registerButton' onclick='Register()'>Register
           </button>&nbsp;
           <button type='button' id='startBtn' onclick='PlayGame()' disabled >Start
           </button>&nbsp;
 		  <button type = "button" onclick="findPercentageScore()">Percentage Score</button>
-
-          <div hidden='true' id='showcharts'>
+</form>
+ <div id='modalBgChart' class='modalBgChart'> 
+          <div class='modalChart'>
+          <div  id='showcharts'>
             <label>Gender
             </label>
-            <table height="100" width="150" border="1" cellspacing="0" cellpadding="0">
-              <tr height="50">
+            <table id="table1">
+              <tr >
                 <td width="50">
                   <p>Male
                   </p>
@@ -106,7 +95,7 @@
                   <img style="vertical-align: bottom;" id="malebar" src="barchartcolor.jpg" width="0" height="50" alt="image">
                 </td>
               </tr>
-              <tr height="50" >
+              <tr >
                 <td >
                   <p>Female
                   </p>
@@ -116,10 +105,10 @@
                 </td>
               </tr>
             </table>
-            <label for='percentchart'>Players percent in each range
+            <label>Players percent in each range
             </label>
-            <table  id="percentchart" width="250" border="1"  cellspacing="0" cellpadding="0">
-              <tr height="50" width="100">
+            <table  id="table2">
+              <tr >
                 <td>&#60;50
                 </td>
                 <td colspan="7" >
@@ -128,7 +117,7 @@
                 <td width="100" id='bar1'>
                 </td>			
               </tr>
-              <tr height="50" width="100">
+              <tr >
                 <td >50-59
                 </td>
                 <td colspan="7">
@@ -137,7 +126,7 @@
                 <td id='bar2'>
                 </td>			
               </tr>
-              <tr  height="50" width="100">
+              <tr >
                 <td >60-69
                 </td>
                 <td colspan="7">
@@ -146,7 +135,7 @@
                 <td id='bar3'>
                 </td>
               </tr>
-              <tr height="50" width="100">
+              <tr >
                 <td>70-79
                 </td>
                 <td colspan="7">
@@ -155,8 +144,8 @@
                 <td id='bar4'>
                 </td>			
               </tr>
-              <tr height="50" width="100">
-                <td width="50">80-89
+              <tr >
+                <td>80-89
                 </td>
                 <td colspan="7">
                   <img style="vertical-align: bottom;"  src="green.jpg" width="90"  height="50" alt="image" >
@@ -164,7 +153,7 @@
                 <td id='bar5'>
                 </td>			
               </tr>
-              <tr height="50" width="100">
+              <tr>
                 <td >90-99
                 </td>
                 <td colspan="7">
@@ -173,7 +162,7 @@
                 <td id='bar6'>
                 </td>			
               </tr>
-              <tr height="50" width="100">
+              <tr>
                 <td>100
                 </td>
                 <td colspan="7" >
@@ -184,33 +173,36 @@
               </tr>
             </table>
 			</div>
-            </form>
           </div>
-        <div id='modalBg' class='modalBg'> 
-          <div class='modal'>
-            <form name='modalForm'>
-              <section id="answerResponse"> 
-              </section>
-              <input class='question' id='numvalue1' type='text' disabled readonly>
-              <span class="multiplySign">×
-              </span>
-              <input class='question' type='text' id='numvalue2' disabled readonly>
-              <br>
-              <br>
-              <input type='number' id='usrAns'>
-              <br>
-              <br>
-              <br>
-              <button type='button' onclick='checkAnswer()' id='acceptBtn' >Accept
-              </button>
-              <!--Task 8-->
-              <button type='button' onclick='PlayGame()' class ='button' id='nextBtn'>Next
-              </button>
-              <!--Task 7-->
-              <button type='button' onclick='findPercentageScore()' id='endBtn' >End
-              </button> 
-            </form>
           </div>
-        </div>
+		  
+		  
+		  
+	<div id='modalBg' class='modalBg'> 
+	  <div class='modal'>
+		<form name='modalForm'>
+		  <section id="answerResponse"> 
+		  </section>
+		  <input class='question' id='numvalue1' type='text' disabled readonly>
+		  <span class="multiplySign">×
+		  </span>
+		  <input class='question' type='text' id='numvalue2' disabled readonly>
+		  <br>
+		  <br>
+		  <input type='number' id='usrAns'>
+		  <br>
+		  <br>
+		  <br>
+		  <button type='button' onclick='checkAnswer()' id='acceptBtn' >Accept
+		  </button>
+		  <!--Task 8-->
+		  <button type='button' onclick='PlayGame()' class ='button' id='nextBtn'>Next
+		  </button>
+		  <!--Task 7-->
+		  <button type='button' onclick='findPercentageScore()' id='endBtn' >End
+		  </button> 
+		</form>
+       </div>
+     </div>
         </body>
-      </html>
+      </html> 
