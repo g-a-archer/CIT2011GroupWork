@@ -1,4 +1,4 @@
-var PlayersData=[];
+var PlayersData;
 var correctAns;
 var usrCorrectAns = 0;
 var usrIncorrectAns = 0;
@@ -6,15 +6,10 @@ var usrQuestionCount=0;
 var seed1;
 var seed2;
 var QuestionCounter = 0;
-var Questions=[];
-var playerDataBuffer=[] ;
+var Questions=[seed1,seed2,correctAns];
+var playerDataBuffer = [" "];
 var femalegenderpercent=0;
 var malegenderpercent=0;
-var score;
-var statuss;
-var Questiondata;
-var num1;
-var num2;
 var gendertotal=0;
 var femalecount=0;
 var malecount=0;
@@ -24,26 +19,24 @@ function Register(){
     //Validate Inputs ar
     var fName = document.getElementById("fName").value;
     var lName = document.getElementById("lName").value;
-	console.log( document.getElementById("lName").value+"Last name from register");
     var age = calculateAge();
     var email = document.getElementById("email").value;
     var gender =  document.getElementById('gender').value;
-    var notice = document.getElementById("notice");
+    var notice = document.getElementById("notice")
 
     if(fName !="" && lName != "" && age != "" && email != "" && gender != ""){
         document.getElementById("notice").innerHTML = "";
-   }
+    }
     else{
         notice.innerHTML = "<span style= 'font-weight:bold; ;color: red;'>Please Complete all fields </span><hr>";
         document.getElementById("nameForm").scrollIntoView();
         return false;
     }
-	
-//Passing data to task 13
-  PlayersData = [fName,lName,age];
+    PlayersData = [fName,lName,age];
 	console.log(PlayersData+"firstname last name age"); 
 	
 	//Apart of task 15
+
 	gendertotal=gendertotal+1;
 	if(gender=='female'){
 		femalecount=femalecount+1;
@@ -54,23 +47,25 @@ function Register(){
    femalegenderpercent=(femalecount/gendertotal)*100;
    malegenderpercent=(malecount/gendertotal)*100;
 
- // Apart Task 3
-    disableInput();
+    PlayersData = [fName,lName,age,gender,email,usrCorrectAns,usrIncorrectAns];
+    // Apart Task 3
+    enableButton();
 }
 
 function disableModal(){ //Disabling modal and activating form and percentage button
-    var endBtn = document.getElementById('modalBg');
-    endBtn.classList.remove('activateModal');
-
+    document.getElementById('modalBg').classList.remove('activateModal');
     document.getElementById('modalBgChart').classList.remove('activateModal');
+
 }
-function diasble2(){
+
+
+function resetForm(){
     var input =document.getElementsByClassName('ffrom');
     var startButton = document.getElementById("startBtn");
     var registrationForm = document.forms["registrationForm"];
     var percentage = document.getElementById("showPercentage");
     var percentagelb = document.getElementById("showPercentageLb");
-
+    
     registrationForm.reset();
     input.disabled = false;
 
@@ -80,32 +75,19 @@ function diasble2(){
     startButton.disabled = true;
     percentage.removeAttribute("hidden");
     percentagelb.removeAttribute("hidden");
-
     disableModal();
 }
-//Task 13
+
 function showall(){
-	console.log(document.getElementById("lName").value+"last name getElementById");
-	console.log(PlayersData[1]+"last name array  print");
+    var hideTextarea = document.getElementById("hideTextarea");
     var allplayertxt = document.getElementById("showAllPlayers");
-    var allplayerlb = document.getElementById("showAllPlayersLb");
-var gender=document.getElementById("");
-	allplayertxt.innerHTML = ""; 
-    allplayerlb.removeAttribute("hidden");
-    allplayertxt.removeAttribute("hidden");
+    hideTextarea.classList.remove('hideTextarea');
+    
+    playerDataBuffer.push("\n"+PlayersData);
+    console.log(playerDataBuffer);
 
-    playerDataBuffer.push(PlayersData,Questiondata,sstatus,score);
-    console.log(playerDataBuffer+"Buffer data");
-
-    allplayertxt.innerHTML = (playerDataBuffer+"\n \n");
-
-	//document.getElementById('scorediv').className += 'scoreactivate';
-
-	document.getElementById('showcharts').className += 'genderactivate';
-	document.getElementsByClassName("addBreak").innerHTML = "<br>";
-var chart=document.getElementById("showcharts");
-	chart.removeAttribute("hidden");
-
+    allplayertxt.innerHTML = (playerDataBuffer+"\n");
+    document.getElementsByClassName("addBreak").innerHTML = "<br>";
 }
 
 // Apart of Task 2
@@ -118,21 +100,24 @@ function calculateAge(){
 }
 
 // Apart Task 3
-function disableInput(){
+function enableButton(){
     var input =document.getElementsByClassName('ffrom');
-    var startButton = document.getElementById("startBtn");
-
+    var startButton = document.getElementById('startBtn');
+    var percentScoreBtn = document.getElementById('percentScoreBtn');
     input.disabled = true;
 
     for(i=0;i<input.length;i++){
         input[i].disabled=true;
     }   
     startButton.disabled = false;
+    percentScoreBtn.disabled = false;
+
 }
 
 //Task 4
 function PlayGame() {
-    document.getElementById("answerResponse").innerHtml = "";
+    document.getElementById("answerResponse").innerHtml = '<span> </span>';
+
     document.getElementById('modalBg').className += ' activateModal';
 
     var seed1 = Math.floor(Math.random()*9)+1;
@@ -141,71 +126,56 @@ function PlayGame() {
     Questions.push(seed1);
     Questions.push(seed2);
     Questions.push(correctAns);
-    console.log(Questions+"User Question");
+    console.log(Questions);
     QuestionCounter++;
-   num1=seed1;
-   num2=seed2;
+        
     document.getElementById("numvalue1").value = seed1;
     document.getElementById("numvalue2").value = seed2;
-    document.getElementById("usrAns").value  = "";
-
+    document.getElementById("usrAns").value  = " ";
 }
 //TASK 6	
 function checkAnswer(){
     var usrAns = document.getElementById('usrAns').value;
-    document.getElementById("answerResponse").innerHTML = "";
+    document.getElementById("answerResponse").innerHTML = "  ";
                 //  0      1    2    3     4       5             6
     //PlayersData = [fName,lName,age,gender,email,usrCorrectAns,usrIncorrectAns];
     if(usrAns == correctAns){
-        document.getElementById("answerResponse").innerHTML = "<span style='color: green'>CORRECT!</span>";
+        document.getElementById("answerResponse").innerHTML = "<span style='color: green'>CORRECT &#3846;</span>";
         usrCorrectAns+=1;
         PlayersData.splice((PlayersData.length)-2,1,usrCorrectAns);
         console.log("Correct: "+usrCorrectAns);
-		//passing data to task 13
-		sstatus='Correct';
     }else{
         document.getElementById("answerResponse").innerHTML = "<span style='color: red'>Incorrect</span>";
         usrIncorrectAns+=1;
         PlayersData.splice((PlayersData.length)-1,1,usrIncorrectAns);
          console.log("Incorrect: " + usrIncorrectAns);
-		 sstatus='Incorrect';
     }
-	//passing data top task 13
-	 var useranswer= document.getElementById("usrAns").value;
-	Questiondata=[num1+"*"+num2+"="+useranswer];  
     showall();
 }
 function findPercentageScore(){
-     document.getElementById('modalBgChart').className += ' activateModalclass';
-    document.getElementById("showPercentage").innerHTML = "";
-	usrQuestionCount=0;
-    usrQuestionCount = usrCorrectAns+usrIncorrectAns;
-     usrPercentage=((usrCorrectAns)/usrQuestionCount)*100;
-    console.log(usrQuestionCount+"Questioncount"); 
-console.log(usrCorrectAns+"User correct answer");
+    document.getElementById('modalBgChart').className += ' activateModalChart';
 
-console.log(usrCorrectAns/usrQuestionCount+"usrCorrectAns/usrQuestionCount");
-	console.log(usrPercentage+"Userpercentage");
+    document.getElementById("showPercentage").innerHTML = "";
+    usrQuestionCount = usrCorrectAns+usrIncorrectAns;
+    console.log(usrQuestionCount);
+     usrPercentage=((usrCorrectAns)/usrQuestionCount)*100;
+    console.log(usrPercentage);
     var date=new Date();
     var showValue = `Total number of questions: ${usrQuestionCount}\nPercentage score: ${Math.floor(usrPercentage)}%\nCurrent date: ${date}`;
-
-	console.log(showValue+"show value");
+    console.log(showValue);
 
     document.getElementById("showPercentage").innerHTML = showValue;
-
-
-  score= usrPercentage;
-  console.log(score+"score-percent");
-usrCorrectAns=0;
-usrIncorrectAns=0;
-	disableModal();
+	
+    resetForm();
+    disableModal();
+	showfreq();
 }
-
-
 
 function showfreq(){
 	var fbar=femalegenderpercent;
 	var mbar=malegenderpercent;
+	 document.getElementById('malepercent').innerHTML='%'+mbar;
+	 document.getElementById('femalepercent').innerHTML='%'+fbar;
 	document.getElementById("malebar").width=mbar;
 	document.getElementById("femalebar").width=fbar;
 
